@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <Flex justify='center' bg='#98ff98'  height='100px'  color='#006442' align='center'>
+    <Flex justify='center' bg='##bcefbc'  height='100px'  color='#006442' align='center'>
   <Heading fontSize={'50px'} fontFamily={'fantasy'}>Veggy </Heading>
   <flex >
   <Input  height={"37"} textColor={"black"} borderColor={"#006442"} marginLeft='50px' w='490px' variant='outline' placeholder='search the vegitables' borderEndRadius={"none"} />
