@@ -1,5 +1,5 @@
 import React ,{useState,useEffect}from 'react'
-import {   SimpleGrid,Flex ,Input } from '@chakra-ui/react' //GridItem
+import {   SimpleGrid,Flex  } from '@chakra-ui/react' //GridItem
 import Navbar from '../components/Navbar/Navbar'//exported defaultly
 import {Cards} from '../components/cards/Cards'
 
@@ -9,34 +9,51 @@ import {Cards} from '../components/cards/Cards'
 
  
   //const [query,setQuery]=useState("")
-  const [name,setName] = useState([])
-  const [price, setPrice] = useState([])
+  // const [name,setName] = useState([])
+  // const [price, setPrice] = useState([])
 //useState([{name:"",price:""}])
   
-  //const [info,setInfo]=useState([{name:"",price:""}])
+//  const [info,setInfo]=useState([{name:"",price:""}])
 
-  // useEffect(() => {                                                                           //using for veg nameee
-  //   fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
-  //   .then(res => res.json())                                                                    // to chang the api in an readable format
-  //         setInfo(info.map((item)=>{name:item.name,price=item.price})))
-  // }, [])
+//   useEffect(() => {                                                                           //using for veg nameee
+//     fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
+//     .then(res => res.json())   
+//     .then(                                                                 // to chang the api in an readable format
+//           setInfo(info.map((item)=>{name:item.name,price:item.price})))
+//   }, [])
 
+const [data,setData]=useState([{name:"",price:""}])
 
+  useEffect(() => {                                                                           
+    fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
+    .then(res => res.json())   
+    .then( (data) => {
+      console.log(data)
+      setData(data.map((data)=>
+      {
+        return{
+          name:data.name,
+         // image:item.image,
+          price:data.price
+        }
+      }))
+    })})    
+      
+      // to chang the api in an readable format
 
-
-  useEffect(() => {                                                                           //using for veg nameee
-  fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
-  .then(res => res.json())                                                                    // to chang the api in an readable format
-  .then(
-    (data) => {
-      console.log(data)                                                                        // setname (data) : render all the data in api
-    setName(data.map((item) => item.name))
-      setPrice(data.map((value) => value.price))
-      console.log(name)
-      console.log(price)
-    }
-  )
-}, [])
+//   useEffect(() => {                                                                           //using for veg nameee
+//   fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
+//   .then(res => res.json())                                                                    // to chang the api in an readable format
+//   .then(
+//     (data) => {
+//       console.log(data)                                                                        // setname (data) : render all the data in api
+//     setName(data.map((item) => item.name))
+//       setPrice(data.map((value) => value.price))
+//       console.log(name)
+//       console.log(price)
+//     }
+//   )
+// }, [])
 
 
 
@@ -56,7 +73,7 @@ import {Cards} from '../components/cards/Cards'
   <SimpleGrid  templateColumns='repeat(4, 1fr)' gap={0} paddingLeft='200px' paddingRight='200px'paddingTop={'40px'}>
 
 
-{(name).map((name,price) => {
+{data.map((name,price) => {
   return (
   <Cards Name={name} Prize={price}/>
   )
