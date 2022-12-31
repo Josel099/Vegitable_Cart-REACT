@@ -1,94 +1,53 @@
-import React ,{useState,useEffect}from 'react'
-import {   SimpleGrid,Flex  } from '@chakra-ui/react' //GridItem
-import Navbar from '../components/Navbar/Navbar'//exported defaultly
-import {Cards} from '../components/cards/Cards'
+import React, { useState, useEffect } from "react";
+import { SimpleGrid, Flex } from "@chakra-ui/react"; //GridItem
+import Navbar from "../components/Navbar/Navbar"; //exported defaultly
+import { Cards } from "../components/cards/Cards";
 
+export const Home = () => {
+  const [data, setData] = useState([{ name: "", price: "", image: "" }]);
 
-
- export const Home = () => {
-
- 
-  //const [query,setQuery]=useState("")
-  // const [name,setName] = useState([])
-  // const [price, setPrice] = useState([])
-//useState([{name:"",price:""}])
-  
-//  const [info,setInfo]=useState([{name:"",price:""}])
-
-//   useEffect(() => {                                                                           //using for veg nameee
-//     fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
-//     .then(res => res.json())   
-//     .then(                                                                 // to chang the api in an readable format
-//           setInfo(info.map((item)=>{name:item.name,price:item.price})))
-//   }, [])
-
-const [data,setData]=useState([{name:"",price:""}])
-
-  useEffect(() => {                                                                           
-    fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
-    .then(res => res.json())   
-    .then( (data) => {
-      console.log(data)
-      setData(data.map((data)=>
-      {
-        return{
-          name:data.name,
-         // image:item.image,
-          price:data.price
-        }
-      }))
-    })})    
-      
-      // to chang the api in an readable format
-
-//   useEffect(() => {                                                                           //using for veg nameee
-//   fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
-//   .then(res => res.json())                                                                    // to chang the api in an readable format
-//   .then(
-//     (data) => {
-//       console.log(data)                                                                        // setname (data) : render all the data in api
-//     setName(data.map((item) => item.name))
-//       setPrice(data.map((value) => value.price))
-//       console.log(name)
-//       console.log(price)
-//     }
-//   )
-// }, [])
-
-
+  useEffect(() => {
+    fetch(
+      "https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json"
+    )
+      .then((res) => res.json()) // to chang the api in an readable format
+      .then((data) => {
+        console.log(data);
+        setData(
+          data.map((data) => {
+            return {
+              name: data.name,
+              image: data.image,
+              price: data.price,
+            };
+          })
+        );
+      });
+  });
 
   // function Search (items){
   //   return items.filter((name) =>name.toLowerCase().includes(query.toLowerCase()))
- 
-
 
   return (
-  <Flex bg='#e3ffe3' flexDirection={"column"}>          {/*in flex it is in row through flexdirection we change the direction to column */}
-
-  <Navbar/> 
-
-  {/* <Input  marginLeft='50px' w='490px' variant='outline' placeholder='search the vegitables' onChange={(e) => setQuery(e.target.value)}/>  */}
-
-
-  <SimpleGrid  templateColumns='repeat(4, 1fr)' gap={0} paddingLeft='200px' paddingRight='200px'paddingTop={'40px'}>
-
-
-{data.map((name,price) => {
-  return (
-  <Cards Name={name} Prize={price}/>
-  )
-  } )}
-
-
-
-
-  
-  </SimpleGrid >
-  
- 
-    </Flex>//"100 vh"- vh is veiw height 
-  )
-                                              
-  }
-
-//export default Home
+    <Flex bg="#e3ffe3" flexDirection={"column"}>
+      {" "}
+      {/*in flex it is in row through flexdirection we change the direction to column */}
+      <Navbar />
+      {/* <Input  marginLeft='50px' w='490px' variant='outline' placeholder='search the vegitables' onChange={(e) => setQuery(e.target.value)}/>  */}
+      <SimpleGrid
+        templateColumns="repeat(4, 1fr)"
+        gap={0}
+        paddingLeft="200px"
+        paddingRight="200px"
+        paddingTop={"40px"}
+      >
+        {data.map((obj) => {
+          return (
+            //obj is a functon variable which maped with the data stored in the api
+            <Cards Name={obj.name} Prize={obj.price} Imag={obj.image} />
+          );
+        })}
+      </SimpleGrid>
+    </Flex>
+  );
+};
