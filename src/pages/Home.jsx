@@ -41,6 +41,8 @@ export const Home = () => {
         paddingRight="200px"
         paddingTop={"40px"}
       >
+        
+
         {data.map((obj) => {
           return (
             //obj is a functon variable which maped with the data stored in the api
