@@ -60,7 +60,7 @@ const Navbar = () => {
           color={"white"}
           marginBottom={"2.5"}
         >
-          <Link to={"./login"}>login</Link>
+          <Link to={"./test"}>login</Link>
         </Button>
       </Flex>
     </Flex>
