@@ -8,18 +8,19 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { IoMdReturnLeft } from "react-icons/io";
-import React, { useState } from "react";
-//import { useState, useContext } from 'react'
-//import { LoginContext } from '../contexts/LoginContext'
+// import React, { useState } from "react";
+import { useState, useContext } from 'react'
+import {useNavigate} from "react-router-dom"
+import { LoginContext } from '../contexts/LoginContext'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [loggedIn, setLoggedIn] = useState(false)
-
-  //const { email, setEmail, loggedIn, setLoggedIn } = useContext(LoginContext)
-
+ 
+  // const [email, setEmail] = useState('')
+  // const [loggedIn, setLoggedIn] = useState(false)
+  const { setEmail,  setLoggedIn } = useContext(LoginContext)
+  const navigate = useNavigate();
   return (
     <Flex
       fontFamily={"fantasy"}
@@ -33,12 +34,11 @@ const Login = () => {
         maxWidth={"30px"}
         color={""}
         _hover={{ bg: "#6fb45d" }}
+        onClick={()=>navigate("/")}             //navigate is used toreturn back home page and whih is possible through an useNavigate hook
       >
-        <Link to={"./"}>
           <IoMdReturnLeft />
-        </Link>{" "}
-        {/* don't working  !!!!!!!!! dosen't worling fix it */}
       </Button>
+
       <Flex alignItems={"center"} flexDirection={"column"}>
         <Box marginTop={"50px"} minW={"300px"} bg={"#80c48b"} padding={"25px"}>
           <Heading marginBottom={"50"}>Log-In your account</Heading>
@@ -72,7 +72,7 @@ const Login = () => {
             </a>
           </Text>
         </Box>
-        {loggedIn && <Heading color={"blue"}>{email}</Heading>}
+        {/* {loggedIn && <Heading color={"blue"}>{email}</Heading>} */}
       </Flex>
     </Flex>
   );

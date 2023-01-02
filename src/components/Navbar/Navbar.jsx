@@ -1,15 +1,17 @@
-import React from "react";
+import React ,{useContext}from "react";
 import { Flex, Input, Heading, Text, Button } from "@chakra-ui/react";
 import { BsSearch, BsCart4 } from "react-icons/bs"; // icons
 //import {} from 'react-icons/bs';// icons
 import { Link } from "react-router-dom";
+import {SearchContext} from "../../contexts/Searchcontext"
 
 const Navbar = () => {
+  const { query,setQuery } = useContext(SearchContext)
   return (
     <Flex
       justify="center"
-      bg="##bcefbc"
-      height="100px"
+      bg="#d3f5d3"
+      height="110px"
       color="#006442"
       align="center"
     >
@@ -26,6 +28,8 @@ const Navbar = () => {
           variant="outline"
           placeholder="search the vegitables"
           borderEndRadius={"none"}
+          onChange={(e) => setQuery(e.target.value)}
+        
         />
         <Button
           colorScheme="green"
@@ -69,4 +73,4 @@ const Navbar = () => {
 
 export default Navbar;
 
-// doned at search bar starting the video id about 8 min   //borderColor='green'
+

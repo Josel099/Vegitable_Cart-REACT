@@ -18,9 +18,12 @@ export const Cards = ({ Name, Prize, Imag }) => {
   return (
     <>
       <Card
-        maxW="240px"
+      maxW={"240px"}
+       
         backgroundColor={"#eaffdb"}
-        _hover={{ transform: "scale(1.01)" }}
+        _hover={{ transform: "scale(1.01)", boxShadow:'2xl' }}
+        boxShadow={'lg'}
+        
       >
         {" "}
         {/* maxumum width specified */}
