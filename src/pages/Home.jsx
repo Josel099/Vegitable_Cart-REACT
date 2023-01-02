@@ -40,7 +40,7 @@ export const Home = () => {
       </SearchContext.Provider>
 
       <SimpleGrid
-              columns={{sm: 2, md: 3,lg:4}}   //templateColumns={[2, null, 3]}//"repeat(4, 1fr)"
+             templateColumns= "repeat(4, 1fr)"  //{{sm: 2, md: 3,lg:4}}   //{[2, null, 3]}//
         gap={0}
         paddingLeft="200px"
         paddingRight="200px"
