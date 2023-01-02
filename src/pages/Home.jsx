@@ -5,10 +5,9 @@ import { Cards } from "../components/cards/Cards";
 import { SearchContext } from "../contexts/Searchcontext";
 
 export const Home = () => {
-
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("");
   const [data, setData] = useState([{ name: "", price: "", image: "" }]);
- //obj is a functon variable which maped with the data stored in the api
+
   useEffect(() => {
     fetch(
       "https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json"
@@ -19,7 +18,7 @@ export const Home = () => {
         setData(
           data.map((data) => {
             return {
-             name:data.name,
+              name: data.name,
               image: data.image,
               price: data.price,
             };
@@ -27,66 +26,29 @@ export const Home = () => {
         );
       });
   });
-  function Search (items){
-    return items.filter((name) =>name.toLowerCase().includes(query.toLowerCase()))
+  function Search(items) {
+    return items.filter((name) =>
+      name.name.toLowerCase().includes(query.toLowerCase())
+    );
   }
 
-  
-
   return (
-    
-    // function Search (items){
-    //   return items.filter((name) =>name.toLowerCase().includes(query.toLowerCase()))
-
-    // },
-    
-
-  
-    
-  
-    
- 
-    
-
-
     <Flex bg="#e3ffe3" flexDirection={"column"}>
-      {" "}
-      
-      {/*in flex it is in row through flexdirection we change the direction to column */}
-     
-      <SearchContext.Provider value={{query,setQuery}}>
-      <Navbar />
+      {/*in flex it is in row through flexdirection we change the direction to column {" "} */}
+      <SearchContext.Provider value={{ query, setQuery }}>
+        <Navbar />
       </SearchContext.Provider>
-      
-      {/* <Input  marginLeft='50px' w='490px' variant='outline' placeholder='search the vegitables' onChange={(e) => setQuery(e.target.value)}/>  */}
+
       <SimpleGrid
-        templateColumns="repeat(4, 1fr)"
+              columns={{sm: 2, md: 3,lg:4}}   //templateColumns={[2, null, 3]}//"repeat(4, 1fr)"
         gap={0}
         paddingLeft="200px"
         paddingRight="200px"
         paddingTop={"40px"}
       >
-        
-
-
-        {/* {Search(data).map((obj) => ( 
-          return(
-        <Cards  Name={(obj.name)} Prize={obj.price} Imag={obj.image} />
-          );
-        
-        ))}‌ */}
-      
-
-
-        {(data).map((obj) => {
-           
-            return (
-             
-
-            <Cards  Name={(obj.name)} Prize={obj.price} Imag={obj.image} />
-            
-   
-          );
+        {Search(data).map((obj) => {
+          //obj is a functon variable which maped with the data stored in the api
+          return <Cards Name={obj.name} Prize={obj.price} Imag={obj.image} />;
         })}
       </SimpleGrid>
     </Flex>
